@@ -1,39 +1,39 @@
-one_wrap_around = 2 ** 32 - 1
+ONE_WRAP_A_ROUND = 2 ** 32 - 1
 
-a_sec = 1000
-a_minute = 60 * a_sec
-a_hour = 60 * a_minute
-a_day = 24 * a_hour
+A_SEC = 1000
+A_MINUTE = 60 * A_SEC
+A_HOUR = 60 * A_MINUTE
+A_DAY = 24 * A_HOUR
 
 
 def get_days(millis):
-    number_of_days = millis // a_day
-    rest = millis % a_day
+    number_of_days = millis // A_DAY
+    rest = millis % A_DAY
     return [number_of_days, rest]
 
 
 def get_hour(rest_millis):
-    number_of_hours = rest_millis // a_hour
-    rest = rest_millis % a_hour
+    number_of_hours = rest_millis // A_HOUR
+    rest = rest_millis % A_HOUR
     return [number_of_hours, rest]
 
 
 def get_minutes(rest_millis):
-    number_of_minutes = rest_millis // a_minute
-    rest = rest_millis % a_minute
+    number_of_minutes = rest_millis // A_MINUTE
+    rest = rest_millis % A_MINUTE
     return [number_of_minutes, rest]
 
 
 def get_seconds(rest_millis):
-    number_of_seconds = rest_millis // a_sec
-    rest = rest_millis % a_sec
+    number_of_seconds = rest_millis // A_SEC
+    rest = rest_millis % A_SEC
     return [number_of_seconds, rest]
 
 
-one_wrap_a_round_day = 49
-one_wrap_a_round_hour = 17
-one_wrap_a_round_minute = 2
-one_wrap_a_round_second = 47
+ONE_WRAP_DAY = 49
+ONE_WRAP_HOUR = 17
+ONE_WRAP_MINUTE = 2
+ONE_WRAP_SECOND = 47
 
 current_wrap = 4
 current_millis = 34567295
@@ -43,10 +43,10 @@ current_cycle_hours = get_hour(current_cycle_days[1])
 current_cycle_minutes = get_minutes(current_cycle_hours[1])
 current_cycle_seconds = get_seconds(current_cycle_minutes[1])
 
-total_days = current_cycle_days[0] + (current_wrap * one_wrap_a_round_day)
-total_hours = current_cycle_hours[0] + (current_wrap * one_wrap_a_round_hour)
-total_minutes = current_cycle_minutes[0] + (current_wrap * one_wrap_a_round_minute)
-total_seconds = current_cycle_seconds[0] + (current_wrap * one_wrap_a_round_second)
+total_days = current_cycle_days[0] + (current_wrap * ONE_WRAP_DAY)
+total_hours = current_cycle_hours[0] + (current_wrap * ONE_WRAP_HOUR)
+total_minutes = current_cycle_minutes[0] + (current_wrap * ONE_WRAP_MINUTE)
+total_seconds = current_cycle_seconds[0] + (current_wrap * ONE_WRAP_SECOND)
 
 print('=' * 40)
 
