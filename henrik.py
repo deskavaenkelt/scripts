@@ -30,49 +30,23 @@ def get_seconds(rest_millis):
     return [number_of_seconds, rest]
 
 
-print(one_wrap_around // a_day)
-print(one_wrap_around % a_day)
+one_wrap_a_round_day = 49
+one_wrap_a_round_hour = 17
+one_wrap_a_round_minute = 2
+one_wrap_a_round_second = 47
 
-print('=' * 40)
-
-summary = get_days(one_wrap_around)
-print('Number of days: \t\t\t{}, \trest: {} '.format(summary[0], summary[1]))
-
-summary = get_hour(summary[1])
-print('Number of hours: \t\t\t{}, \trest: {} '.format(summary[0], summary[1]))
-
-summary = get_minutes(summary[1])
-print('Number of minutes: \t\t\t{}, \trest: {} '.format(summary[0], summary[1]))
-
-summary = get_seconds(summary[1])
-print('Number of seconds: \t\t\t{}, \trest: {} '.format(summary[0], summary[1]))
-
-
-print('Number of nano seconds: \t{}'.format(summary[1]))
-
-one_wrap_a_round_days = 49
-one_wrap_a_round_hours = 17
-one_wrap_a_round_minutes = 2
-one_wrap_a_round_seconds = 47
-
-
-number_of_wrap_a_rounds = 4
+current_wrap = 4
 current_millis = 34567295
 
-current_a_round_days = get_days(current_millis)
-current_a_round_hours = get_hour(current_a_round_days[1])
-current_a_round_minutes = get_minutes(current_a_round_hours[1])
-current_a_round_seconds = get_seconds(current_a_round_minutes[1])
+current_cycle_days = get_days(current_millis)
+current_cycle_hours = get_hour(current_cycle_days[1])
+current_cycle_minutes = get_minutes(current_cycle_hours[1])
+current_cycle_seconds = get_seconds(current_cycle_minutes[1])
 
-wrap_days = number_of_wrap_a_rounds * one_wrap_a_round_days
-wrap_hours = number_of_wrap_a_rounds * one_wrap_a_round_hours
-wrap_minutes = number_of_wrap_a_rounds * one_wrap_a_round_minutes
-wrap_seconds = number_of_wrap_a_rounds * one_wrap_a_round_seconds
-
-total_days = current_a_round_days[0] + wrap_days
-total_hours = current_a_round_hours[0] + wrap_hours
-total_minutes = current_a_round_minutes[0] + wrap_minutes
-total_seconds = current_a_round_seconds[0] + wrap_seconds
+total_days = current_cycle_days[0] + (current_wrap * one_wrap_a_round_day)
+total_hours = current_cycle_hours[0] + (current_wrap * one_wrap_a_round_hour)
+total_minutes = current_cycle_minutes[0] + (current_wrap * one_wrap_a_round_minute)
+total_seconds = current_cycle_seconds[0] + (current_wrap * one_wrap_a_round_second)
 
 print('=' * 40)
 
