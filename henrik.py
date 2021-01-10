@@ -6,9 +6,9 @@ a_hour = 60 * a_minute
 a_day = 24 * a_hour
 
 
-def get_days(current_millis):
-    number_of_days = current_millis // a_day
-    rest = one_wrap_around % a_day
+def get_days(millis):
+    number_of_days = millis // a_day
+    rest = millis % a_day
     return [number_of_days, rest]
 
 
@@ -35,20 +35,20 @@ print(one_wrap_around % a_day)
 
 print('=' * 40)
 
-sum = get_days(one_wrap_around)
-print('Number of days: \t\t\t{}, \trest: {} '.format(sum[0], sum[1]))
+summary = get_days(one_wrap_around)
+print('Number of days: \t\t\t{}, \trest: {} '.format(summary[0], summary[1]))
 
-sum = get_hour(sum[1])
-print('Number of hours: \t\t\t{}, \trest: {} '.format(sum[0], sum[1]))
+summary = get_hour(summary[1])
+print('Number of hours: \t\t\t{}, \trest: {} '.format(summary[0], summary[1]))
 
-sum = get_minutes(sum[1])
-print('Number of minutes: \t\t\t{}, \trest: {} '.format(sum[0], sum[1]))
+summary = get_minutes(summary[1])
+print('Number of minutes: \t\t\t{}, \trest: {} '.format(summary[0], summary[1]))
 
-sum = get_seconds(sum[1])
-print('Number of seconds: \t\t\t{}, \trest: {} '.format(sum[0], sum[1]))
+summary = get_seconds(summary[1])
+print('Number of seconds: \t\t\t{}, \trest: {} '.format(summary[0], summary[1]))
 
 
-print('Number of nano seconds: \t{}'.format(sum[1]))
+print('Number of nano seconds: \t{}'.format(summary[1]))
 
 one_wrap_a_round_days = 49
 one_wrap_a_round_hours = 17
