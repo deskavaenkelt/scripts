@@ -7,6 +7,7 @@
 - [Add shares](#add-shares)
 - [Add backups](#add-backups)
 - [Upload ISOs](#upload-isos)
+- [Create templates](#create-templates)
 
 ## Updates
 
@@ -72,7 +73,7 @@ update-grub
 proxmox-boot-tool refresh
 ```
 
-Edit: 
+Edit:
 
 ```shell
 nano /etc/modules
@@ -95,7 +96,7 @@ Share: ISO's directory
 
 ## Add backups
 
-Datacenter backup: 
+Datacenter backup:
 
 - Add
 - Node
@@ -106,3 +107,23 @@ Datacenter backup:
 ## Upload ISOs
 
 - [Windows VirtIO Drivers](https://pve.proxmox.com/wiki/Windows_VirtIO_Drivers)
+
+## Create templates
+
+- Shut down machine
+- Convert to template
+- Right click on template and select "Clone"
+- Mode
+    - Linked Clone (builds a new VM from on top of template / really fast)
+    - Full Clone (builds a whole new VM from template / slower but standalone)
+- Reset machine (Linux)
+    - Change hostname: `sudo nano  /etc/hostname` find your hostname and change it to the name you want
+    - change hosts file: `sudo nano /etc/hosts` find your hostname and change it to the name you want
+    - Reset machine id: `rm -f /etc/machine-id /var/lib/dbus/machine-id && dbus-uuidgen --ensure=/etc/machine-id && 
+      dbus-uuidgen --ensure`
+    - Regenerate ssh keys: `regen ssh keys && sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server`
+    - Reboot machine
+- Reset machine (Windows)
+    - Sysprep [Windows](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation?view=windows-11)
+    - Run: `Sysprep /generalize /shutdown` in command prompt
+    - Reboot machine
