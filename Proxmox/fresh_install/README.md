@@ -5,6 +5,8 @@
 - [Updates](#updates)
 - [IOMMU (PCI Passthrough)](#iommu-pci-passthrough)
 - [Add shares](#add-shares)
+- [Add backups](#add-backups)
+
 
 ## Updates
 
@@ -90,3 +92,13 @@ Server name: IP address for NAS
 Username: For NAS user
 Password: For NAS user
 Share: ISO's directory
+
+## Add backups
+
+Datacenter backup: 
+
+- Add
+- Node
+- Storage
+- Schedule
+- Selection mode
