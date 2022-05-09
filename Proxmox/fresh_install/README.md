@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Updates](#updates)
+- [IOMMU (PCI Passthrough)](#iommu-pci-passthrough)
 
 ## Updates
 
@@ -39,4 +40,43 @@ Run
 apt-get update && apt dist-upgrade -y && reboot
 ```
 
+## IOMMU (PCI Passthrough)
+
+[Proxmox PCI Passthrough](https://pve.proxmox.com/wiki/Pci_passthrough)
+
+### For GRUB:
+
+Edit:
+
+```shell
+nano /etc/default/grub
+```
+
+```shell
+# comment out the line containing 'GRUB_CMDLINE_LINUX_DEFAULT="quiet"'
+GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+
+# Add the following line to the file for INTEL:
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
+# or for AMD:
+GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on"
+```
+
+Then save the changes and update grub:
+
+```shell
+update-grub
+proxmox-boot-tool refresh
+```
+
+Edit: 
+
+```shell
+nano /etc/modules
+```
+
+```shell
+update-initramfs -u -k all
+reboot
+```
 
