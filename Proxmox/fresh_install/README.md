@@ -4,6 +4,7 @@
 
 - [Updates](#updates)
 - [IOMMU (PCI Passthrough)](#iommu-pci-passthrough)
+- [Add shares](#add-shares)
 
 ## Updates
 
@@ -80,3 +81,12 @@ update-initramfs -u -k all
 reboot
 ```
 
+## Add shares
+
+Add SMB/CIFS shares:
+
+ID: Share name
+Server name: IP address for NAS
+Username: For NAS user
+Password: For NAS user
+Share: ISO's directory
