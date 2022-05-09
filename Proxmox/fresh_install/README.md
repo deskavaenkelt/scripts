@@ -4,10 +4,11 @@
 
 - [Updates](#updates)
 - [IOMMU (PCI Passthrough)](#iommu-pci-passthrough)
-- [Add shares](#add-shares)
-- [Add backups](#add-backups)
+- [Shares](#shares)
+- [Backups](#backups)
 - [Upload ISOs](#upload-isos)
 - [Create templates](#create-templates)
+- [Cluster](#cluster)
 
 ## Updates
 
@@ -84,7 +85,7 @@ update-initramfs -u -k all
 reboot
 ```
 
-## Add shares
+## Shares
 
 Add SMB/CIFS shares:
 
@@ -94,7 +95,7 @@ Username: For NAS user
 Password: For NAS user
 Share: ISO's directory
 
-## Add backups
+## Backups
 
 Datacenter backup:
 
@@ -117,13 +118,36 @@ Datacenter backup:
     - Linked Clone (builds a new VM from on top of template / really fast)
     - Full Clone (builds a whole new VM from template / slower but standalone)
 - Reset machine (Linux)
-    - Change hostname: `sudo nano  /etc/hostname` find your hostname and change it to the name you want
+    - Change hostname: `sudo nano /etc/hostname` find your hostname and change it to the name you want
     - change hosts file: `sudo nano /etc/hosts` find your hostname and change it to the name you want
-    - Reset machine id: `rm -f /etc/machine-id /var/lib/dbus/machine-id && dbus-uuidgen --ensure=/etc/machine-id && 
+    - Reset machine id: `rm -f /etc/machine-id /var/lib/dbus/machine-id && dbus-uuidgen --ensure=/etc/machine-id &&
       dbus-uuidgen --ensure`
     - Regenerate ssh keys: `regen ssh keys && sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server`
     - Reboot machine
 - Reset machine (Windows)
-    - Sysprep [Windows](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation?view=windows-11)
+  -
+  Sysprep [Windows](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation?view=windows-11)
     - Run: `Sysprep /generalize /shutdown` in command prompt
     - Reboot machine
+
+## Cluster
+
+Make sure to have:
+
+- 2 NICs (1 for management and 1 for public)
+- No VMs (all VMs should be deleted if any exist)
+
+Click on Datacenter -> Clusters -> Create Cluster
+
+- Name of cluster
+- Chose the correct interface for the cluster
+- Create
+
+Click on Join Cluster and select the join information for the cluster you created.
+
+On the Proxmox machine you want to add to cluster chose:
+
+Click on Datacenter -> Clusters -> Join Cluster
+
+- Paste join information from the cluster you created
+- Join
